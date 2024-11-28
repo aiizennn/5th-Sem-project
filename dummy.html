@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Verification</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Login Modal -->
+<div id="loginModal" class="modal" style="display: block;">
+  <div class="modal-content">
+    <span class="close" onclick="closeLoginModal()">&times;</span>
+    <!-- Flip Container -->
+    <div id="formContainer" class="form-container">
+      <!-- Login Form -->
+      <div id="loginForm" class="form-card">
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <p>
+          Don't have an account? 
+          <button class="link-btn" onclick="flipToRegister()">Register</button>
+        </p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" class="form-card">
+        <h2>Register</h2>
+        <form onsubmit="handleRegister(event)">
+          <label for="regUsername">Username:</label>
+          <input type="text" id="regUsername" name="regUsername" required>
+
+          <label for="regEmail">Email:</label>
+          <input type="email" id="regEmail" name="regEmail" required>
+
+          <label for="regPassword">Password:</label>
+          <input type="password" id="regPassword" name="regPassword" required>
+
+          <button type="submit" class="btn">Register</button>
+        </form>
+        <p>
+          Already have an account? 
+          <button class="link-btn" onclick="flipToLogin()">Login</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Main Content -->
+  <div id="mainContent" style="display: none;">
+    <header>
+      <div class="header-left">
+        <h1>Document Verification System</h1>
+        <nav>
+          <a href="javascript:void(0);" onclick="showUploadSection()">Upload Documents</a>
+          <a href="javascript:void(0);" onclick="showDashboard()">Dashboard</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <!-- Login Button -->
+        <button class="login-btn" onclick="openLoginModal()">Login</button>
+        <!-- Logout Button (hidden initially) -->
+        <button class="logout-btn" onclick="logout()" style="display: none;">Logout</button>
+      </div>
+    </header>
+
+    <main>
+
+
+    <!-- Welcome Screen -->
+<div id="welcomeScreen" class="welcome-screen">
+  <h1>Welcome to the Document Verification System</h1>
+  <p>
+    Follow these steps to complete your document verification:
+  </p>
+  <ol>
+    <li>Click on "Upload Documents" to begin.</li>
+    <li>Drag and drop your files or select them manually.</li>
+    <li>Submit your documents for verification.</li>
+  </ol>
+  <button class="btn" onclick="navigateToUpload()">Upload Documents</button>
+</div>
+
+<section id="uploadSection" class="section" style="display: none;">
+  <h2>Upload Your Documents</h2>
+  <p>Please fill in your details and upload the required documents:</p>
+
+  <form id="uploadForm">
+    <!-- Basic Details Section -->
+    <div class="form-group">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    </div>
+
+    <!-- Address Section -->
+    <div class="form-group-inline">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter your address" required>
+      <input type="file" id="addressProof" name="addressProof" accept=".pdf,.jpg,.jpeg,.png" class="upload-btn" required>
+    </div>
+
+    <!-- ID Section -->
+    <div class="form-group-inline">
+      <label for="idType">Select ID Type:</label>
+      <select id="idType" name="idType" required>
+        <option value="" disabled selected>Select ID Type</option>
+        <option value="aadhar">Aadhar ID</option>
+        <option value="driving_license">Driving License</option>
+        <option value="voter_id">Voter ID</option>
+        <option value="passport">Passport</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="text" id="idNumber" name="idNumber" placeholder="Enter your ID number" required>
+      <input type="file" id="idCard" name="idCard" accept=".pdf,.jpg,.jpeg,.png" class="upload-btn" required>
+    </div>
+
+    <!-- 10th Marks Section -->
+    <div class="form-group-inline">
+      <label for="marks10">10th Marks (%):</label>
+      <input type="text" id="marks10" name="marks10" placeholder="Enter your 10th marks" required>
+      <input type="file" id="marks10File" name="marks10File" accept=".pdf,.jpg,.jpeg,.png" class="upload-btn" required>
+    </div>
+
+    <!-- 12th Marks Section -->
+    <div class="form-group-inline">
+      <label for="marks12">12th Marks (%):</label>
+      <input type="text" id="marks12" name="marks12" placeholder="Enter your 12th marks" required>
+      <input type="file" id="marks12File" name="marks12File" accept=".pdf,.jpg,.jpeg,.png" class="upload-btn" required>
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+
+
+
+
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="section" style="display: none;">
+        <h2>Document Verification Dashboard</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Document Name</th>
+              <th>Status</th>
+              <th>Date Submitted</th>
+              <th>Verified By</th>
+            </tr>
+          </thead>
+          <tbody id="dashboardData">
+            <!-- Mock data will be inserted here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Document Verification System</p>
+    </footer>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
